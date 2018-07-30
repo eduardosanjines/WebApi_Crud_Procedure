@@ -4,6 +4,6 @@ Read
 Update
 Delete
 
-My Web Api funcionally with method CRUD in (Create, Read, Update and Delete). 
+My Web Api with method CRUD in (Create, Read, Update and Delete). 
 
-Finished and Tested (Postman). 
+Web Api Tested with PostMan Software. 
