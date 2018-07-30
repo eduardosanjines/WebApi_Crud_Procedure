@@ -60,6 +60,11 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="SQL\Create_Table_Alumno.sql" />
+    <Content Include="SQL\DeleteGuid.sql" />
+    <Content Include="SQL\GetAll.sql" />
+    <Content Include="SQL\GetByGuid.sql" />
+    <Content Include="SQL\I_Alumno.sql" />
+    <Content Include="SQL\UpdateAlumno.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

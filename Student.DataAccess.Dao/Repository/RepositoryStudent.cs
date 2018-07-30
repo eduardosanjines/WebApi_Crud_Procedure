@@ -85,7 +85,7 @@ namespace Student.DataAccess.Dao.Repository
                 {
                     // Importante abrir la conexion antes de lanzar ningun comando
                     _conn.Open();
-                    using (SqlCommand _cmd = new SqlCommand("GetAllAlumnos", _conn))
+                    using (SqlCommand _cmd = new SqlCommand("GetAll", _conn))
                     {
                         using (SqlDataReader reader = _cmd.ExecuteReader())
                         {
@@ -126,14 +126,13 @@ namespace Student.DataAccess.Dao.Repository
             {
                 using (SqlConnection _conn = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand _cmd = new SqlCommand("SelectById", _conn))
+                    using (SqlCommand _cmd = new SqlCommand("GetByGuid", _conn))
                     {
                         // Importante abrir la conexion antes de lanzar ningun comando
+                        _conn.Open();
                         _cmd.CommandType = CommandType.StoredProcedure;
                         SqlParameter RGuid = _cmd.Parameters.Add("@Guid", SqlDbType.UniqueIdentifier);
                         RGuid.SqlValue = guid;
-                     
-                        _conn.Open();
 
                         using (SqlDataReader reader = _cmd.ExecuteReader())
                         {
@@ -168,18 +167,19 @@ namespace Student.DataAccess.Dao.Repository
         {
             try
             {
-                // var sql = "DELETE FROM dbo.Alumnos WHERE Guid='@GUID'";
-                var sql = "DELETE FROM dbo.Alumnos WHERE Guid=@GUID";
+                //var sql = "DELETE FROM dbo.Alumnos WHERE Guid=@GUID";
 
                 using (SqlConnection _conn = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand _cmd = new SqlCommand(sql, _conn))
+                    using (SqlCommand _cmd = new SqlCommand("DeleteGuid", _conn))
                     {
                         // Importante abrir la conexion antes de lanzar ningun comando
                         _conn.Open();
-                        
-                        _cmd.Parameters.AddWithValue("@GUID", guid);
 
+                        _cmd.CommandType = CommandType.StoredProcedure;
+                        // _cmd.Parameters.AddWithValue("@GUID", guid);
+                        SqlParameter RGuid = _cmd.Parameters.Add("@Guid", SqlDbType.UniqueIdentifier);
+                        RGuid.SqlValue = guid;
                         _cmd.ExecuteNonQuery();
 
                         return 1;
@@ -204,14 +204,29 @@ namespace Student.DataAccess.Dao.Repository
         {
             try
             {
-                var sql = "UPDATE dbo.Alumnos SET Guid=@Guid, Nombre=@Nombre, Apellidos=@Apellidos, Dni=@Dni, Registro=@Registro, Nacimiento=@Nacimiento, Edad=@Edad WHERE Guid=@Guid";
+                //var sql = "UPDATE dbo.Alumnos SET Guid=@Guid, Nombre=@Nombre, Apellidos=@Apellidos, Dni=@Dni, Registro=@Registro, Nacimiento=@Nacimiento, Edad=@Edad WHERE Guid=@Guid";
 
                 using (SqlConnection _conn = new SqlConnection(connectionString))
                 {
-                    using (SqlCommand _cmd = new SqlCommand(sql, _conn))
+                    using (SqlCommand _cmd = new SqlCommand("UpdateAlumno", _conn))
                     {
                         // Importante abrir la conexion antes de lanzar ningun comando
                         _conn.Open();
+                        _cmd.CommandType = CommandType.StoredProcedure;
+                        //SqlParameter _sqlGuid = _cmd.Parameters.Add("@Guid", SqlDbType.UniqueIdentifier);
+                        //SqlParameter _sqlNombre = _cmd.Parameters.Add("@Nombre", SqlDbType.NVarChar);
+                        //SqlParameter _sqlApellido = _cmd.Parameters.Add("@Apellidos", SqlDbType.NVarChar);
+                        //SqlParameter _sqlDni = _cmd.Parameters.Add("@Dni", SqlDbType.NVarChar);
+                        //SqlParameter _sqlRegistro = _cmd.Parameters.Add("@Registro", SqlDbType.Date);
+                        //SqlParameter _sqlNacimiento = _cmd.Parameters.Add("@Nacimiento", SqlDbType.Date);
+                        //SqlParameter _sqlEdad = _cmd.Parameters.Add("@Edad", SqlDbType.Int);
+                        //_sqlGuid.SqlValue = guid;
+                        //_sqlNombre.SqlValue = alumno.Nombre;
+                        //_sqlApellido.SqlValue = alumno.Apellidos;
+                        //_sqlDni.SqlValue = alumno.Dni;
+                        //_sqlRegistro.SqlValue = alumno.Registro;
+                        //_sqlNacimiento.SqlValue = alumno.Nacimiento;
+                        //_sqlEdad.SqlValue = alumno.Edad;
 
                         _cmd.Parameters.AddWithValue("@Guid", guid);
                         _cmd.Parameters.AddWithValue("@Nombre", alumno.Nombre.ToString());

@@ -1,6 +1,6 @@
-﻿USE VuelingApiD;
+﻿USE VuelingApi;
 
-IF OBJECT_ID(N'VuelingApiD.dbo.Alumno', N'U') IS NULL
+IF OBJECT_ID(N'VuelingApi.dbo.Alumno', N'U') IS NULL
 BEGIN
 
 CREATE TABLE dbo.Alumnos
