@@ -213,21 +213,6 @@ namespace Student.DataAccess.Dao.Repository
                         // Importante abrir la conexion antes de lanzar ningun comando
                         _conn.Open();
                         _cmd.CommandType = CommandType.StoredProcedure;
-                        //SqlParameter _sqlGuid = _cmd.Parameters.Add("@Guid", SqlDbType.UniqueIdentifier);
-                        //SqlParameter _sqlNombre = _cmd.Parameters.Add("@Nombre", SqlDbType.NVarChar);
-                        //SqlParameter _sqlApellido = _cmd.Parameters.Add("@Apellidos", SqlDbType.NVarChar);
-                        //SqlParameter _sqlDni = _cmd.Parameters.Add("@Dni", SqlDbType.NVarChar);
-                        //SqlParameter _sqlRegistro = _cmd.Parameters.Add("@Registro", SqlDbType.Date);
-                        //SqlParameter _sqlNacimiento = _cmd.Parameters.Add("@Nacimiento", SqlDbType.Date);
-                        //SqlParameter _sqlEdad = _cmd.Parameters.Add("@Edad", SqlDbType.Int);
-                        //_sqlGuid.SqlValue = guid;
-                        //_sqlNombre.SqlValue = alumno.Nombre;
-                        //_sqlApellido.SqlValue = alumno.Apellidos;
-                        //_sqlDni.SqlValue = alumno.Dni;
-                        //_sqlRegistro.SqlValue = alumno.Registro;
-                        //_sqlNacimiento.SqlValue = alumno.Nacimiento;
-                        //_sqlEdad.SqlValue = alumno.Edad;
-
                         _cmd.Parameters.AddWithValue("@Guid", guid);
                         _cmd.Parameters.AddWithValue("@Nombre", alumno.Nombre.ToString());
                         _cmd.Parameters.AddWithValue("@Apellidos", alumno.Apellidos.ToString());
